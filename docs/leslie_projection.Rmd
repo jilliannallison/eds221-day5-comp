@@ -44,18 +44,19 @@ Add line-by-line comments wheres prompted in the code below, explaining what eac
 # ------ comment line-by-line ---- #
 
 # The line below...
-time_yr <- seq(from = 0, to = 8, by = 1)
+time_yr <- seq(from = 0, to = 8, by = 1) # made a sequence 0 1 2 3 ..... 7 8 to represent years
 
 # The line below...
-proj_year <- matrix(ncol = length(fish_year0), nrow = length(time_yr))
+proj_year <- matrix(ncol = length(fish_year0), nrow = length(time_yr)) # making an empty matrix with 4 columns for each initial pop and 9 rows for each year that passes
 
 # The line below...
-proj_year[1, ] <- fish_year0
+proj_year[1, ] <- fish_year0 # populates first row as initial pop values
 
 # The for loop below...
-for (i in 2:length(time_yr)) {
-  proj_year[i,] <- fish_leslie %*% proj_year[i-1,]
-}
+for (i in 2:length(time_yr)) { # start at 2 because we dont want to override initial populations 
+  proj_year[i,] <- fish_leslie %*% proj_year[i-1,] # taking dot product the previous year's values 
+} # previous years population is used in calculations for the current year 
+
 
 
 # The rest is wrangling & visualization (run to check it out):
